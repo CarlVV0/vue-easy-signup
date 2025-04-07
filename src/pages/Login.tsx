@@ -40,16 +40,16 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center auth-gradient">
       <div className="w-full max-w-md p-8 space-y-8 text-center">
-        <div className="flex justify-center space-x-4">
+        <div className="flex justify-center items-center space-x-4">
           <img 
             src="/lovable-uploads/8515b465-52f2-4f7b-a34e-4399dfc8009e.png" 
-            alt="Organization Logos"
-            className="w-32 h-32 object-contain" 
+            alt="MDC-CAST Logo" 
+            className="h-24 w-24 object-contain mx-auto" 
           />
         </div>
         
         <h1 className="text-2xl font-bold tracking-tight text-white">
-          MDC-CAST BUDGET TRACKER SYSTEM
+          MDC-CAST BUDGET TRACKER
         </h1>
         
         <form className="mt-8 space-y-4" onSubmit={handleLogin}>
@@ -110,3 +110,4 @@ const Login = () => {
 };
 
 export default Login;
+
