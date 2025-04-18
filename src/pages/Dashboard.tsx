@@ -1,47 +1,76 @@
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { toast } from 'sonner';
+import { SidebarProvider } from "@/components/ui/sidebar";
+import DashboardSidebar from '@/components/DashboardSidebar';
+import ExpenseCard from '@/components/ExpenseCard';
 
 const Dashboard = () => {
   const navigate = useNavigate();
   
-  // Check if user is logged in
   useEffect(() => {
     const user = localStorage.getItem('user');
     if (!user) {
       navigate('/login');
     }
   }, [navigate]);
-  
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    toast.success('Logged out successfully');
-    navigate('/login');
-  };
-  
-  // Get username from localStorage
-  const username = JSON.parse(localStorage.getItem('user') || '{}').username;
-  
+
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">MDC-CAST Budget Tracker System</h1>
-          <Button variant="outline" onClick={handleLogout}>Logout</Button>
-        </div>
-      </header>
-      
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="px-4 py-6 sm:px-0">
-          <div className="border-4 border-dashed border-gray-200 rounded-lg h-96 flex items-center justify-center flex-col">
-            <h2 className="text-2xl font-semibold mb-4">Welcome, {username || 'User'}!</h2>
-            <p className="text-gray-500">This is your dashboard. Budget data will be displayed here.</p>
+    <SidebarProvider>
+      <div className="flex min-h-screen w-full bg-gray-50">
+        <DashboardSidebar />
+        <main className="flex-1 p-8">
+          <div className="max-w-7xl mx-auto">
+            <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <ExpenseCard
+                title="Today's Expense"
+                amount={0}
+                date={new Date().toLocaleDateString()}
+                className="bg-orange-100"
+              />
+              <ExpenseCard
+                title="Today's Expense"
+                amount={0}
+                date={new Date().toLocaleDateString()}
+                className="bg-blue-100"
+              />
+              <ExpenseCard
+                title="Last 7 day's Expense"
+                amount={0}
+                date="27 February 2025"
+                className="bg-gray-200"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+              <ExpenseCard
+                title="Last 30 day's Expense"
+                amount={0}
+                date="03 February 2025"
+                className="bg-purple-200"
+              />
+              <ExpenseCard
+                title="One year Expense"
+                amount={0}
+                date="03 March 2024"
+                className="bg-pink-200"
+              />
+            </div>
+
+            <div className="mt-6">
+              <ExpenseCard
+                title="Total Expense"
+                amount={0}
+                date=""
+                className="bg-indigo-500 text-white"
+              />
+            </div>
           </div>
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
+    </SidebarProvider>
   );
 };
 
