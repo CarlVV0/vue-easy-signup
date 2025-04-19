@@ -11,16 +11,38 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
-const AddExpenseForm = () => {
+interface AddExpenseFormProps {
+  onAddExpense: (expense: {
+    title: string;
+    amount: number;
+    date: string;
+  }) => void;
+}
+
+const AddExpenseForm = ({ onAddExpense }: AddExpenseFormProps) => {
   const [date, setDate] = useState<Date>();
   const [item, setItem] = useState('');
   const [price, setPrice] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log({ date, item, price });
+    
+    if (!date || !item || !price) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    const newExpense = {
+      title: item,
+      amount: parseFloat(price),
+      date: format(date, 'yyyy-MM-dd')
+    };
+
+    onAddExpense(newExpense);
+    toast.success('Expense added successfully');
+
     // Clear form
     setDate(undefined);
     setItem('');
