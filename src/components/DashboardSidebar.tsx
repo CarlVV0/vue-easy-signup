@@ -45,7 +45,7 @@ const DashboardSidebar = () => {
             </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <Link to="/dashboard" className="w-full">
+            <Link to="/expenses" className="w-full">
               <SidebarMenuButton className="w-full">
                 <Receipt />
                 <span>Expenses</span>
