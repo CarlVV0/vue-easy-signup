@@ -6,7 +6,7 @@ import {
   UserCircle, 
   LogOut 
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -37,28 +37,36 @@ const DashboardSidebar = () => {
         </div>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton className="w-full">
-              <LayoutDashboard />
-              <span>Dashboard</span>
-            </SidebarMenuButton>
+            <Link to="/dashboard" className="w-full">
+              <SidebarMenuButton className="w-full">
+                <LayoutDashboard />
+                <span>Dashboard</span>
+              </SidebarMenuButton>
+            </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton className="w-full">
-              <Receipt />
-              <span>Expenses</span>
-            </SidebarMenuButton>
+            <Link to="/dashboard" className="w-full">
+              <SidebarMenuButton className="w-full">
+                <Receipt />
+                <span>Expenses</span>
+              </SidebarMenuButton>
+            </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton className="w-full">
-              <FileText />
-              <span>Expense Reports</span>
-            </SidebarMenuButton>
+            <Link to="/dashboard" className="w-full">
+              <SidebarMenuButton className="w-full">
+                <FileText />
+                <span>Expense Reports</span>
+              </SidebarMenuButton>
+            </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton className="w-full">
-              <UserCircle />
-              <span>Profile</span>
-            </SidebarMenuButton>
+            <Link to="/dashboard" className="w-full">
+              <SidebarMenuButton className="w-full">
+                <UserCircle />
+                <span>Profile</span>
+              </SidebarMenuButton>
+            </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton 
